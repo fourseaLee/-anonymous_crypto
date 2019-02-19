@@ -6,6 +6,9 @@ add_definitions(-DBCN -DXMR)
 option(BCN "Build the library of crpto from  bcn" ON)
 option(BETTER_DEBUG "Disables optimizations. We do not use standard debug/realease configurations because they change too much" OFF)
 
+option(ZCASH "Build the library of core algorithm from zcash" ON)
+option(ZCOIN "Build the library of core protocol(zerocoin) from zcoin" ON)
+
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -maes -g -Wall -Wextra -Werror=return-type -Wno-unused-parameter")
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -maes -g -Wall -Wextra -Werror=return-type -Wno-unused-parameter")
 
@@ -51,4 +54,13 @@ if(BCN)
 	add_library(bcn-crypto ${BCN_CRYPTO_SRC})
 
 endif(BCN)
+
+if (ZCASH)
+    add_subdirectory(zcash)
+endif(ZCASH)
+
+if(ZCOIN)
+    add_subdirectory(zcoin)
+endif(ZCOIN)
+
 
